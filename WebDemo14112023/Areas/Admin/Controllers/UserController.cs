@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing.Printing;
 using DatabaseFirstDemo.Models;
 using DatabaseFirstDemo.Repository;
 using WebDemo14112023.Areas.Admin.Models;
+using X.PagedList;
 
 namespace WebDemo14112023.Areas.Admin.Controllers
 {
@@ -21,8 +23,9 @@ namespace WebDemo14112023.Areas.Admin.Controllers
             userRepository = new UsersRepository();
             roleRepository = new RolesRepository();
         }
-        public IActionResult Index()
+        public IActionResult Index(string? searchString, int? page, string sortBy, int? roleId)
         {
+
             // Lấy danh sách quyền truy cập từ Repository hoặc Database
             IEnumerable<Role> roles = roleRepository.GetAll();
 
@@ -31,17 +34,39 @@ namespace WebDemo14112023.Areas.Admin.Controllers
 
             // Lưu SelectList vào ViewBag để sử dụng trong View
             ViewBag.Roles = selectList;
+            ICollection<UserDetail> usersdetail = new List<UserDetail>();
+            usersdetail = userRepository.GetUserDetailAll().ToList();
+            ICollection<User> users = new List<User>();
+            /* if (searchString != null)
+             {
+                 searchString = searchString.ToLower();*/
+            TempData["searchString"] = searchString != null ? searchString.ToLower() : "";
+            //usersdetail = userRepository.GetUserDetailByKeyword(searchString);
+            users = userRepository.GetUserByKeyword(searchString, sortBy, roleId).ToList();
+            /*   }
+               else
+               {
 
-            IEnumerable<User> users = userRepository.GetAll();
-            IEnumerable<UserDetail> usersdetail = userRepository.GetUserDetailAll();
-            return View(new RoleUser
+                   users = userRepository.GetAll().ToList();
+               }*/
+            var roleUser = new RoleUser
             {
                 Roles = (ICollection<Role>)roles,
-                Users = (ICollection<User>)users,
+                //Users = (ICollection<User>)users,
                 UserDetails = (ICollection<UserDetail>)usersdetail,
-            });
-            //return View(users);
+            };
+            /*  return View(new RoleUser
+              {
+                  Roles = (ICollection<Role>)roles,
+                  Users = (ICollection<User>)users,
+                  UserDetails = (ICollection<UserDetail>)usersdetail,
+              });*/
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            roleUser.Users = users.ToPagedList(pageNumber, pageSize);
+            return View(roleUser);
         }
+
 
         // GET: Admin/Roles/Create
         public IActionResult Create()
@@ -78,14 +103,14 @@ namespace WebDemo14112023.Areas.Admin.Controllers
                 userDetail.UserId = user.UserId;
                 userRepository.InsertUserDetail(userDetail);
                 SetAlert("Insert Data is success!", "success");
-                return Json(new { success = true });
+
                 /* }*/
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message });
             }
-            return Json(new { success = false });
+            return Json(new { success = true });
         }
 
         [HttpGet]
@@ -142,13 +167,13 @@ namespace WebDemo14112023.Areas.Admin.Controllers
                 userRepository.UpdateUser(user);
                 userRepository.UpdateUserDetail(userDetail);
                 SetAlert("Update Data is success!", "success");
-                return Json(new { success = true });
+
             }
             catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message });
             }
-            return Json(new { success = false });
+            return Json(new { success = true });
         }
 
         [HttpPost]
@@ -174,6 +199,28 @@ namespace WebDemo14112023.Areas.Admin.Controllers
             {
                 status = result
             });
+        }
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            User user = userRepository.GetById(id);
+            UserDetail userDetail = userRepository.GetByUserDetailId(id);
+            //ViewBag.Roles = new SelectList(roleRepository.GetAll(), "Id", "Name", user.RoleId);
+            var data = new
+            {
+                Id = user.UserId,
+                UserName = user.UserName,
+                //Password = user.Password,
+                Status = Convert.ToBoolean(user.Status) ? "Hoạt động" : "Khoá",
+                RoleId = roleRepository.GetById(user.RoleId).Name,
+                FullName = userDetail.FullName,
+                Address = userDetail.Address,
+                Email = userDetail.Email
+                // Các trường khác
+            };
+
+            return new JsonResult(new { success = true, data = data });
         }
     }
 }

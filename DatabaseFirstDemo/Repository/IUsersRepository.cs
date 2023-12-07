@@ -1,4 +1,5 @@
 ﻿using DatabaseFirstDemo.Models;
+using System.Globalization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,7 @@ namespace DatabaseFirstDemo.Repository
         void UpdateUser(User user);
         void UpdateUserDetail(UserDetail userDetail);
         UserDetail GetByUserDetailId(int? id);
+        List<UserDetail> GetUserDetailByKeyword(string keyword);
+        List<User> GetUserByKeyword(string keyword, string sortBy, int? roleId);
     }
 }

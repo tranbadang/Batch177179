@@ -1,9 +1,13 @@
 using DatabaseFirstDemo.Models;
+using WebDemo14112023.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddScoped(typeof(ProductMangementBatch177Context));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Register AddAutoMapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
 var app = builder.Build();
 
@@ -25,7 +29,7 @@ app.MapAreaControllerRoute(
     name: "admin",
     areaName: "Admin",
     pattern: "Admin/{controller=Login}/{action=Index}/{id?}"
-    );
+    ) ;
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

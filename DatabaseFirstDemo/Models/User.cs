@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DatabaseFirstDemo.Models;
 
 public partial class User
 {
+    [Display(Name = "Tên đăng nhập")]
     public int UserId { get; set; }
 
     public string UserName { get; set; } = null!;
