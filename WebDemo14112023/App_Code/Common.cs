@@ -27,12 +27,12 @@
         return hashString.PadLeft(32, '0');
     }
 
-    /// <summary>
-    /// Get Ngày giờ server
-    /// Output: Ngày giờ được lấy tại Server
-    /// </summary>
-    public DateTime GetServerDateTime()
-    {
+        /// <summary>
+        /// Get Ngày giờ server
+        /// Output: Ngày giờ được lấy tại Server
+        /// </summary>
+        public static DateTime GetServerDateTime()
+        {
         return DateTime.Now.ToUniversalTime().AddHours(7);
     }
 }

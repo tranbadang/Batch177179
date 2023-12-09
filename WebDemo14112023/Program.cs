@@ -1,7 +1,17 @@
 using DatabaseFirstDemo.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using WebDemo14112023.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = "/Admin/Login/Index";
+    options.ReturnUrlParameter = "returnUrl";
+}).AddCookie("Admin", options =>
+{
+    options.LoginPath = new PathString("/Admin/Login/Index");
+});
 
 builder.Services.AddScoped(typeof(ProductMangementBatch177Context));
 // Add services to the container.
