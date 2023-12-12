@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 
 namespace DatabaseFirstDemo.Models;
 
@@ -26,4 +29,7 @@ public partial class News
     public virtual NewsCategory Category { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
+    [NotMapped]
+    [DisplayName("Upload File")]
+    public IFormFile ImageFile { get; set; }
 }

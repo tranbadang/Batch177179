@@ -3,7 +3,7 @@ using DatabaseFirstDemo.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using WebDemo14112023.Models;
+using WebDemo14112023.Areas.Admin.Models;
 
 namespace WebDemo14112023.Areas.Admin.Controllers
 {
@@ -15,8 +15,9 @@ namespace WebDemo14112023.Areas.Admin.Controllers
         {
             userRepository = new UsersRepository();
         }
-        public IActionResult Index()
+        public IActionResult Index(string ReturnUrl = null)
         {
+            TempData["ReturnUrl"] = ReturnUrl;
             return View();
         }
 
@@ -58,6 +59,10 @@ namespace WebDemo14112023.Areas.Admin.Controllers
                 };
 
                     TempData["Info"] = "Admin";
+                    if (TempData["ReturnUrl"] != null)
+                    {
+                        return Redirect(TempData["ReturnUrl"].ToString());
+                    }
                     return RedirectToAction("Index", "Home", routeValues);
                 }
                 else

@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DatabaseFirstDemo.Models;
 using DatabaseFirstDemo.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebDemo14112023.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+    [Authorize(AuthenticationSchemes = "Admin")]
     public class RolesController : BaseController
     {
         private readonly ProductMangementBatch177Context _context;

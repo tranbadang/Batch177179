@@ -1,10 +1,13 @@
 ﻿using DatabaseFirstDemo.Models;
 using DatabaseFirstDemo.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebDemo14112023.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    /*[Authorize(Roles = "Admin")]
+    [Authorize(AuthenticationSchemes = "Admin")]*/
     public class NewsCategoryController : BaseController
     {
         INewsCategoryRepository newsCategoryRepository = null;
