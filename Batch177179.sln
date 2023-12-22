@@ -27,7 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPA", "SPA\SPA.csproj", "{E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebDemo14112023", "WebDemo14112023\WebDemo14112023.csproj", "{3634CD8C-A598-4E55-8E43-D972814C5271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseFirstDemo", "DatabaseFirstDemo\DatabaseFirstDemo.csproj", "{519E4414-5DFA-487F-B2E8-DBA18998F898}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseFirstDemo", "DatabaseFirstDemo\DatabaseFirstDemo.csproj", "{519E4414-5DFA-487F-B2E8-DBA18998F898}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clinic_BaDang", "Clinic_BaDang\Clinic_BaDang.csproj", "{8CE13E16-6760-47A1-81C3-8E343DE55C06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicLibrary", "ClinicLibrary\ClinicLibrary.csproj", "{8CD78F74-6175-4E50-998A-8AF57669BA0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +91,14 @@ Global
 		{519E4414-5DFA-487F-B2E8-DBA18998F898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{519E4414-5DFA-487F-B2E8-DBA18998F898}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{519E4414-5DFA-487F-B2E8-DBA18998F898}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE13E16-6760-47A1-81C3-8E343DE55C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE13E16-6760-47A1-81C3-8E343DE55C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE13E16-6760-47A1-81C3-8E343DE55C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE13E16-6760-47A1-81C3-8E343DE55C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CD78F74-6175-4E50-998A-8AF57669BA0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CD78F74-6175-4E50-998A-8AF57669BA0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CD78F74-6175-4E50-998A-8AF57669BA0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CD78F74-6175-4E50-998A-8AF57669BA0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

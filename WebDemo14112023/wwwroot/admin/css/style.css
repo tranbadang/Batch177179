@@ -6762,3 +6762,6 @@ label.error {
 input.error {
     border: 1px solid red;
 }
+
+.ck-content {
+    height: 300px;
