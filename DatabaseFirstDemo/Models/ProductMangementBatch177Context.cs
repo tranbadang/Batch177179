@@ -110,6 +110,7 @@ public partial class ProductMangementBatch177Context : DbContext
             entity.Property(e => e.DateUpdate).HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.Name).HasMaxLength(100);
+            entity.Property(e => e.SubjectContent).HasColumnType("ntext");
             entity.Property(e => e.Quanlity)
                 .HasMaxLength(10)
                 .IsFixedLength();
