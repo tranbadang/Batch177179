@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Client\Views\Shared\" />
     <Folder Include="wwwroot\upload\images\" />
   </ItemGroup>
 

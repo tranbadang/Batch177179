@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace WebDemo14112023.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
-    [Authorize(AuthenticationSchemes = "Admin")]
+    /*[Authorize(Roles = "Admin")]
+    [Authorize(AuthenticationSchemes = "Admin")]*/
     public class HomeController : BaseController
     {
         public IActionResult Index()
